@@ -3,48 +3,55 @@
 require_once 'Datos/conf.php';
 
 class Productos extends Conf {
-
+    // Atributos de la clase los cuales representan
+    // los campos de la tabla en la base de datos
     public $name;
     public $description;
     public $categorie;
 
-    // Método para listar los productos
+    // Metodo para listar los productos
     public function list_products() {
         $query = "SELECT * FROM productos";
-        return mysqli_fetch_all($this->query($query), MYSQLI_ASSOC);
+        return mysqli_fetch_all($this->exec_query($query), MYSQLI_ASSOC);
     }
 
-    // Método para agregar un producto
-    public function add() {
-        $query = "INSERT INTO productos (nombre, descripcion, id_categorie) VALUES (
+    // Metodo para agregar
+    public function add(){
+        $query = "INSERT INTO productos (
+            nombre,
+            descripcion,
+            id_categorie
+        )
+        VALUES (
             '".$this->name."',
             '".$this->description."',
             '".$this->categorie."'
         )";
-        return $this->query($query);
+
+        return $this->exec_query($query);
     }
 
-    // Método para actualizar un producto
-    public function update($id) {
+    // Metodo para actualizar 
+    public function update($id){
         $query = "UPDATE productos SET 
-            nombre = '".$this->name."', 
-            descripcion = '".$this->description."', 
+            nombre = '".$this->name."',
+            descripcion = '".$this->description."',
             id_categorie = '".$this->categorie."'
-            WHERE id = '".$id."'
-        ";
-        return $this->query($query);
+            WHERE id = '".$id."' ";
+            
+            return $this->exec_query($query);
     }
 
-    // Método para eliminar un producto
-    public function delete($id) {
-        $query = "DELETE FROM productos WHERE id = '".$id."'";
-        return $this->query($query);
+    // Metodo para eliminar
+    public function delete($id){
+        $query = "DELETE FROM productos WHERE id = '".$id."' ";
+        return $this->exec_query($query);
     }
 
-    // Método para obtener un producto por ID
-    public function get_producto($id) {
-        $query = "SELECT * FROM productos WHERE id = '".$id."'";
-        return mysqli_fetch_all($this->query($query), MYSQLI_ASSOC);
+    // Metodo para obtener producto por id
+    public function get_producto($id){
+        $query = "SELECT * FROM productos 
+            WHERE id = '".$id."' ";
+        return mysqli_fetch_all($this->exec_query($query), MYSQLI_ASSOC);
     }
 }
-?>
