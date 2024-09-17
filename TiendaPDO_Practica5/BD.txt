@@ -1,0 +1,41 @@
+-- Volcado de SQL de phpMyAdmin
+-- versión 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 11-09-2024 a las 19:21:31
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
+
+create database dbtiendapdo;
+use dbtiendapdo;
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+-- Estructura de tabla para la tabla `productos`
+CREATE TABLE `productos` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `categoria` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcado de datos para la tabla `productos`
+INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `categoria`) 
+VALUES 
+(8, 'Penne ed', 'Pasta de la que te gusta ed', 'Pasta ed');
+
+-- Índices para tablas volcadas
+-- Índices de la tabla `productos`
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_products_categories` (`categoria`);
+
+-- AUTO_INCREMENT de la tabla `productos`
+ALTER TABLE `productos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+COMMIT;
+
+-- Establecer los valores antiguos para los conjuntos de caracteres
